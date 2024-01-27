@@ -17,11 +17,11 @@ export const DetailsInToday = ({ipWeather}) => {
         <h1  className='text-2xl font-semibold' >Weather Details</h1>
       </div>
 
-   <div className=' flex flex-row justify-between  overflow-x-auto  scrollbar 
+   <div className=' flex   overflow-x-auto  scrollbar 
  scrollbar-track-blue-380 scrollbar-thumb-white/50 py-2    w-full    ' >
 
 
-     <div  className=' text-center  rounded-lg flex  flex-row w-full md:mx-5 mx-2 px-5 py-5'>
+     <div  className=' text-center font-semibold rounded-lg flex  flex-row w-full md:mx-5 mx-2 px-5 py-5'>
           
     <Cart wind={`${ipWeather.current?.wind_mph.toFixed()} mph`} title='Wind Speed' image={<BsSpeedometer size={25}/>} />
     <Cart wind={`${ipWeather.current?.humidity.toFixed()}%`} title='Humidity' image={<WiHumidity size={35} />} />

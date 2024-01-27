@@ -8,7 +8,7 @@ import { HeroSection } from './HeroSection.jsx';
 import { HeroLeft  } from './HeroLeft.jsx';
 import {Details  } from './Details.jsx';
 import {DetailsInToday  } from './DetailsInToday.jsx';
-
+import { motion } from 'framer-motion'
 import Image from 'next/image.js';
 
 
@@ -73,12 +73,12 @@ useEffect(() => {
    const fetchWeather = async () => {
     try {
       if (selected && selected.name) {
-        const response = await axios.get(`https://api.weatherapi.com/v1/forecast.json?key=${process.env.NEXT_PUBLIC_API_URL}&q=${selected.name}&days=5&aqi=yes&alerts=no`);
+        const response = await axios.get(`https://api.weatherapi.com/v1/forecast.json?key=${process.env.NEXT_PUBLIC_API_URL}&q=${selected.name}&days=3&aqi=yes&alerts=no`);
         const data = response.data;
         setIpWeather(data);
        
       } else {
-        const response = await axios.get(`https://api.weatherapi.com/v1/forecast.json?key=${process.env.NEXT_PUBLIC_API_URL}&q=${geoInfo.city}&days=5&aqi=yes&alerts=no`);
+        const response = await axios.get(`https://api.weatherapi.com/v1/forecast.json?key=${process.env.NEXT_PUBLIC_API_URL}&q=${geoInfo.city}&days=3&aqi=yes&alerts=no`);
         const data = response.data;
         setIpWeather(data);
  
@@ -137,13 +137,20 @@ useEffect(() => {
             <SearchManufacturer selected={selected} setSelected={setSelected} />
           </div>
 
-          <div className='flex flex-col md:flex-row justify-around md:items-center items-start mx-8'>
-            <HeroSection ipWeather={ipWeather} today={today} />
-            <HeroLeft ipWeather={ipWeather} today={today} />
-          </div>
-
-          <DetailsInToday ipWeather={ipWeather} />
-          <Details ipWeather={ipWeather} />
+          <motion.div     initial={{y:-20,opacity:0}} animate={{y:0,opacity:1}} transition={{duration:0.6,delay:0.5}} className='flex flex-col md:flex-row justify-around md:items-center items-start mx-8'>
+            <HeroSection  
+           
+             ipWeather={ipWeather}
+              today={today} />
+            <HeroLeft  ipWeather={ipWeather} today={today} />
+          </motion.div>
+          <motion.div  initial={{y:20,opacity:0}} animate={{y:0,opacity:1}} transition={{duration:0.8,delay:0.8}} >
+    <DetailsInToday 
+          ipWeather={ipWeather} />
+          <Details 
+          ipWeather={ipWeather} />
+          </motion.div>
+      
         </div>
       ) : (
         <>

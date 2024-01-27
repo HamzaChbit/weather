@@ -28,7 +28,7 @@ export const HeroLeft = ({ ipWeather }) => {
         <div  className='flex flex-row md:gap-4  gap-2 w-full' >
          
         {filteredHours.map((hour, index) => (
-              <div key={index} className='bg-white/40 px-5  py-1  rounded-lg   flex flex-col w-full '>
+              <div key={index} className='bg-white/40 px-5  py-1 font-semibold rounded-lg   flex flex-col w-full '>
 
                 <h6>{hour.time.slice(10,16)}</h6>
                 <div  className='flex flex-row items-center' > 
